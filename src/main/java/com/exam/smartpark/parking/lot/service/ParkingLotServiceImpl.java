@@ -99,7 +99,6 @@ public class ParkingLotServiceImpl implements ParkingLotService{
 
         Long minutes = getTotalMinutes(parkingLotVehicleHistory);
 
-        parkingLotVehicleHistory.setCostPerMinuteSnapshot(parkingLotVehicleHistory.getParkingLot().getCostPerMinute());
         parkingLotVehicleHistory.setTotalParkingCost(getTotalParkingCost(parkingLotVehicleHistory, minutes));
 
         parkingLotVehicleRepository.save(parkingLotVehicleHistory);
@@ -135,8 +134,9 @@ public class ParkingLotServiceImpl implements ParkingLotService{
     }
 
     private Long getTotalMinutes(ParkingLotVehicleHistory parkingLotVehicleHistory) {
-        return Duration.between(parkingLotVehicleHistory.getCheckIn(),
-                                parkingLotVehicleHistory.getCheckOut()).toMinutes() % 60;
+        long totalMinutes = Duration.between(parkingLotVehicleHistory.getCheckIn(),
+                                parkingLotVehicleHistory.getCheckOut()).toMinutes();
+        return Math.max(totalMinutes, 0L);
     }
 
     private BigDecimal getTotalParkingCost(ParkingLotVehicleHistory parkingLotVehicleHistory, Long minutes) {

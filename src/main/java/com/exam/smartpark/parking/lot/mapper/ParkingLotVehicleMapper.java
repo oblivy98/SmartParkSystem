@@ -17,6 +17,7 @@ public class ParkingLotVehicleMapper {
         parkingLotVehicleHistory.setVehicle(vehicle);
         parkingLotVehicleHistory.setParkingLot(parkingLot);
         parkingLotVehicleHistory.setCheckIn(LocalDateTime.now());
+        parkingLotVehicleHistory.setCostPerMinuteSnapshot(parkingLot.getCostPerMinute());
 
         return parkingLotVehicleHistory;
     }

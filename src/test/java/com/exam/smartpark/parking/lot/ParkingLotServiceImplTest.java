@@ -153,7 +153,8 @@ public class ParkingLotServiceImplTest {
 
     @Test
     void shouldCheckoutVehicleSuccessfully() {
-        parkingHistory.setCheckIn(LocalDateTime.now().minusMinutes(30));
+        parkingHistory.setCheckIn(LocalDateTime.now().minusMinutes(15));
+        parkingHistory.setCostPerMinuteSnapshot(parkingLot.getCostPerMinute());
 
         when(vehicleRepository.findByLicensePlate("ABC123")).thenReturn(Optional.of(vehicle));
         when(parkingLotRepository.findByLotId("MAKATI-TOWER-A")).thenReturn(Optional.of(parkingLot));
