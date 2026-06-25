@@ -28,14 +28,13 @@ public class ParkingLotMapper {
         return parkingLot;
     }
 
-    public List<AvailableParkingLotResponse> toAvailableParkingLotList(List<ParkingLot> parkingLots) {
-        return parkingLots.stream()
-                .map(parkingLot -> new AvailableParkingLotResponse(
-                        parkingLot.getLotId(),
-                        parkingLot.getCapacity(),
-                        parkingLot.getOccupiedSpace(),
-                        parkingLot.getCostPerMinute()
-                )).toList();
+    public AvailableParkingLotResponse toAvailableParkingLot(ParkingLot parkingLot) {
+        return new AvailableParkingLotResponse(
+                parkingLot.getLotId(),
+                parkingLot.getCapacity(),
+                parkingLot.getOccupiedSpace(),
+                parkingLot.getCostPerMinute()
+        );
     }
 
     public ParkingLotDetailsResponse toCurrentlyParkedVehicleInParkingLot(List<ParkingLotVehicleHistory> parkingLotVehicleHistoryList) {

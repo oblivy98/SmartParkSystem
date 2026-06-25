@@ -1,10 +1,10 @@
 {
   "info": {
-    "_postman_id": "dfd5113f-7a97-4acb-b885-8cf31aeaf887",
+    "_postman_id": "0e06e3d4-a228-4e78-860b-9c64a48d10dc",
     "name": "SmartPark",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "54408166",
-    "_collection_link": "https://go.postman.co/collection/54408166-dfd5113f-7a97-4acb-b885-8cf31aeaf887?source=collection_link"
+    "_collection_link": "https://go.postman.co/collection/54408166-0e06e3d4-a228-4e78-860b-9c64a48d10dc?source=collection_link"
   },
   "item": [
     {
@@ -189,7 +189,7 @@
             "method": "POST",
             "header": [],
             "url": {
-              "raw": "{{base_url}}/api/parking/check-in?licensePlate=UIC123&lotId=AYALA_MAKATI_TOWER-3",
+              "raw": "{{base_url}}/api/parking/check-in?licensePlate=505XAQ&lotId=AYALA_MAKATI_TOWER-3",
               "host": [
                 "{{base_url}}"
               ],
@@ -201,7 +201,7 @@
               "query": [
                 {
                   "key": "licensePlate",
-                  "value": "UIC123"
+                  "value": "505XAQ"
                 },
                 {
                   "key": "lotId",
@@ -247,7 +247,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{base_url}}/api/parking/available",
+              "raw": "{{base_url}}/api/parking/available?lotId=AYALA_MAKATI_TOWER-3",
               "host": [
                 "{{base_url}}"
               ],
@@ -255,6 +255,12 @@
                 "api",
                 "parking",
                 "available"
+              ],
+              "query": [
+                {
+                  "key": "lotId",
+                  "value": "AYALA_MAKATI_TOWER-3"
+                }
               ]
             }
           },

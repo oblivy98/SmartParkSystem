@@ -110,10 +110,11 @@ public class ParkingLotServiceImpl implements ParkingLotService{
     }
 
     @Override
-    public List<AvailableParkingLotResponse> readAvailableParkingLots() {
-        List<ParkingLot> parkingLots = parkingLotRepository.findAll();
+    public AvailableParkingLotResponse readAvailableParkingLot(String lotId) {
+        ParkingLot parkingLot = parkingLotRepository.findByLotId(lotId)
+                .orElseThrow(() -> new ResourceNotFoundException("No parking lot found"));
 
-        return parkingLotMapper.toAvailableParkingLotList(parkingLots);
+        return parkingLotMapper.toAvailableParkingLot(parkingLot);
     }
 
     @Override

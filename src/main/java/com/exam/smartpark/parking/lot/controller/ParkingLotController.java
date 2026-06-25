@@ -50,8 +50,8 @@ public class ParkingLotController {
     @PreAuthorize("hasRole('MASTER')")
     @GetMapping(    value = "/available",
                     produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<List<AvailableParkingLotResponse>> readAvailableParkingLots() {
-        return ResponseEntity.status(HttpStatus.OK).body(parkingLotService.readAvailableParkingLots());
+    ResponseEntity<AvailableParkingLotResponse> readAvailableParkingLots(@RequestParam String lotId) {
+        return ResponseEntity.status(HttpStatus.OK).body(parkingLotService.readAvailableParkingLot(lotId));
     }
 
     @PreAuthorize("hasRole('MASTER')")

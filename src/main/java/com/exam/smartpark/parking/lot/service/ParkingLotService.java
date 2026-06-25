@@ -15,7 +15,7 @@ public interface ParkingLotService {
 
     CheckoutParkingResponse checkoutParking(String licensePlate, String lotId);
 
-    List<AvailableParkingLotResponse> readAvailableParkingLots();
+    AvailableParkingLotResponse readAvailableParkingLot(String lotId);
 
     ParkingLotDetailsResponse readParkingLotDetails(String lotId);
 }
