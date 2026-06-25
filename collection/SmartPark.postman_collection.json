@@ -1,0 +1,333 @@
+{
+  "info": {
+    "_postman_id": "dfd5113f-7a97-4acb-b885-8cf31aeaf887",
+    "name": "SmartPark",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "54408166",
+    "_collection_link": "https://go.postman.co/collection/54408166-dfd5113f-7a97-4acb-b885-8cf31aeaf887?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Login",
+      "item": [
+        {
+          "name": "Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) {\r",
+                  "    const responseJson = pm.response.json();\r",
+                  "    const token = responseJson.token; // change this if your field is accessToken / jwt / data.token etc.\r",
+                  "\r",
+                  "    pm.collectionVariables.set(\"jwt_token\", token);\r",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"username\": \"SP_ADMIN\",\r\n    \"password\": \"SP_PASSWORD123\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/user/login",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "user",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Logout",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 202) {\r",
+                  "    pm.collectionVariables.set(\"jwt_token\", \"\");\r",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/user/logout",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "user",
+                "logout"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Vehicle",
+      "item": [
+        {
+          "name": "Vehicle read list",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/vehicle",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "vehicle"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Register Vehicle",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"licensePlate\": \"505XAQ\",\r\n    \"vehicleType\": \"CAR\",\r\n    \"ownerName\": \"Pabilona\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/vehicle/register",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "vehicle",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Parking",
+      "item": [
+        {
+          "name": "Register Parking",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"lotId\": \"Tendesitas Ortigas\",\r\n    \"location\": \"Pasig City\",\r\n    \"capacity\": \"50\",\r\n    \"costPerMinute\": \"15.00\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/parking/register",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "parking",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Checkin Parking",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/parking/check-in?licensePlate=UIC123&lotId=AYALA_MAKATI_TOWER-3",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "parking",
+                "check-in"
+              ],
+              "query": [
+                {
+                  "key": "licensePlate",
+                  "value": "UIC123"
+                },
+                {
+                  "key": "lotId",
+                  "value": "AYALA_MAKATI_TOWER-3"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Checkout Parking",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/parking/check-out?licensePlate=505XAQ&lotId=AYALA_MAKATI_TOWER-3",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "parking",
+                "check-out"
+              ],
+              "query": [
+                {
+                  "key": "licensePlate",
+                  "value": "505XAQ"
+                },
+                {
+                  "key": "lotId",
+                  "value": "AYALA_MAKATI_TOWER-3"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Available Parking Lot",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/parking/available",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "parking",
+                "available"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Parking Lot Details",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/parking?lotId=AYALA_MAKATI_TOWER-3",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "parking"
+              ],
+              "query": [
+                {
+                  "key": "lotId",
+                  "value": "AYALA_MAKATI_TOWER-3"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{jwt_token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          "pm.request.headers.add({\r",
+          "    key: 'Authorization',\r",
+          "    value: 'Bearer ' + pm.environment.get('jwt_token')\r",
+          "});"
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "jwt_token",
+      "value": ""
+    }
+  ]
+}

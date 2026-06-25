@@ -33,7 +33,8 @@ public class ParkingLotMapper {
                 .map(parkingLot -> new AvailableParkingLotResponse(
                         parkingLot.getLotId(),
                         parkingLot.getCapacity(),
-                        parkingLot.getOccupiedSpace()
+                        parkingLot.getOccupiedSpace(),
+                        parkingLot.getCostPerMinute()
                 )).toList();
     }
 
