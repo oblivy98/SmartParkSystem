@@ -106,6 +106,8 @@ public class ParkingLotServiceImpl implements ParkingLotService{
 
         parkingLot.setOccupiedSpace(parkingLot.getOccupiedSpace() - 1);
 
+        parkingLotRepository.save(parkingLot);
+
         return new CheckoutParkingResponse(parkingLotVehicleHistory.getTotalParkingCost());
     }
 
