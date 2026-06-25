@@ -8,6 +8,8 @@ import com.exam.smartpark.parking.lot.entity.ParkingLot;
 import com.exam.smartpark.parking.lot.entity.ParkingLotVehicleHistory;
 import org.springframework.stereotype.Component;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +42,8 @@ public class ParkingLotMapper {
                 parkingLotVehicleHistoryList.get(0).getParkingLot().getLotId(),
                 parkingLotVehicleHistoryList.stream().map(history -> new VehiclesInParkingLotResponse(
                         history.getVehicle().getLicensePlate(),
-                        history.getVehicle().getOwnerName()
+                        history.getVehicle().getOwnerName(),
+                        Duration.between(history.getCheckIn(), LocalDateTime.now()).toMinutes()
                 )).toList()
         );
     }

@@ -3,6 +3,7 @@ package com.exam.smartpark.vehicle.controller;
 import com.exam.smartpark.vehicle.dto.request.CreateVehicleRequest;
 import com.exam.smartpark.vehicle.dto.response.VehicleListResponse;
 import com.exam.smartpark.vehicle.service.VehicleService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +24,7 @@ public class VehicleController {
 
     @PreAuthorize("hasRole('MASTER')")
     @PostMapping(value = "/register", consumes = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<Void> registerVehicle(@RequestBody CreateVehicleRequest request) {
+    ResponseEntity<Void> registerVehicle(@Valid @RequestBody CreateVehicleRequest request) {
         vehicleService.registerVehicle(request);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }

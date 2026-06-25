@@ -53,9 +53,4 @@ public class ParkingLotVehicleHistory {
     @Getter
     @Setter
     private BigDecimal totalParkingCost;
-
-    @Column(name = "paid_status")
-    @Getter
-    @Setter
-    private Boolean paidStatus = false;
 }

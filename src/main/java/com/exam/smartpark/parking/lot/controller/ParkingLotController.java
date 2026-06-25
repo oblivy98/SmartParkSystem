@@ -5,6 +5,7 @@ import com.exam.smartpark.parking.lot.dto.response.AvailableParkingLotResponse;
 import com.exam.smartpark.parking.lot.dto.response.CheckoutParkingResponse;
 import com.exam.smartpark.parking.lot.dto.response.ParkingLotDetailsResponse;
 import com.exam.smartpark.parking.lot.service.ParkingLotService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +26,7 @@ public class ParkingLotController {
 
     @PreAuthorize("hasRole('MASTER')")
     @PostMapping(value = "/register", consumes = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<Void> registerParkingLot(@RequestBody CreateParkingLotRequest request) {
+    ResponseEntity<Void> registerParkingLot(@Valid @RequestBody CreateParkingLotRequest request) {
         parkingLotService.registerParkingLot(request);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }

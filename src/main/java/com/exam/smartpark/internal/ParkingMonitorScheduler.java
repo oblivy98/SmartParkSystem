@@ -2,6 +2,7 @@ package com.exam.smartpark.internal;
 
 import com.exam.smartpark.parking.lot.entity.ParkingLotVehicleHistory;
 import com.exam.smartpark.parking.lot.repository.ParkingLotVehicleRepository;
+import com.exam.smartpark.parking.lot.service.ParkingLotService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -18,8 +19,12 @@ public class ParkingMonitorScheduler {
 
     private final ParkingLotVehicleRepository parkingLotVehicleRepository;
 
-    public ParkingMonitorScheduler(ParkingLotVehicleRepository parkingLotVehicleRepository) {
+    private final ParkingLotService parkingLotService;
+
+    public ParkingMonitorScheduler(ParkingLotVehicleRepository parkingLotVehicleRepository,
+                                   ParkingLotService parkingLotService) {
         this.parkingLotVehicleRepository = parkingLotVehicleRepository;
+        this.parkingLotService = parkingLotService;
     }
 
     @Scheduled(fixedRate = 60000)
@@ -34,8 +39,9 @@ public class ParkingMonitorScheduler {
             if(history.getCheckIn().plusMinutes(15).isBefore(LocalDateTime.now())) {
                 log.warn("This vehicle with License Plate: "
                         + history.getVehicle().getLicensePlate()
-                        + "has already lapsed at 15 minutes, removing this vehicle to this parking lot: "
+                        + " has already lapsed at 15 minutes, removing this vehicle to this parking lot: "
                         + history.getParkingLot().getLotId() + " automatically");
+                parkingLotService.checkoutParking(history.getVehicle().getLicensePlate(), history.getParkingLot().getLotId());
             }
         }
     }

@@ -1,6 +1,7 @@
 package com.exam.smartpark.parking.lot.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,17 +22,18 @@ public class ParkingLot {
     @Getter
     private Long parkingLotId;
 
-    @Column(name = "lot_id")
+    @Size(max = 50, message = "Lot id must not exceed 50 characters")
+    @Column(name = "lot_id", length = 50, nullable = false)
     @Getter
     @Setter
     private String lotId;
 
-    @Column(name = "location")
+    @Column(name = "location", nullable = false)
     @Getter
     @Setter
     private String location;
 
-    @Column(name = "capacity")
+    @Column(name = "capacity", nullable = false)
     @Getter
     @Setter
     private Integer capacity;
