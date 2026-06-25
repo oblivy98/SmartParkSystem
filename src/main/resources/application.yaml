@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: smartpark
+
+  profiles:
+    default: dev
+
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: true
+
+  config:
+    import: optional:file:.env[.properties]
+
+server:
+  servlet:
+    context-path: /api
