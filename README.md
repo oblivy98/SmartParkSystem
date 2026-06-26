@@ -35,3 +35,39 @@ To fully simulate login and authentication through our endpoints, we have to con
 6) On the created environment, add Variable=base_url, then value=http://localhost:8080. Save the changes.
 7) On the top right corner, you can see "No Environment", Click that, then a dropdown will show, click on the new environment that you have just created.
 8) After this. the endpoints can now be used for calling REST APIs on the backend service.
+
+|| **Initialized dummy data** ||
+Test login user
+Username: SP_ADMIN
+Password SP_PASSWORD123
+
+Test Vehicle (1)
+LicensePlate: 505XAG
+OwnerName: Drenzo
+VehicleType: MOTORCYCLE
+
+Test Vehicle (2)
+LicensePlate: UIC123
+OwnerName: Andrei
+VehicleType: CAR
+
+Test Parking Lot (1)
+LotId: AYALA_MAKATI_TOWER-1
+Location: MAKATI CITY, Salcedo
+Capacity: 50
+OccupiedSpace: 0
+CostPerMinute: 5
+
+Test Parking Lot (2)
+LotId: AYALA_MAKATI_TOWER-2
+Location: MAKATI CITY, Salcedo
+Capacity: 100
+OccupiedSpace: 0
+CostPerMinute: 3
+
+Test Parking Lot (3)
+LotId: AYALA_MAKATI_TOWER-3
+Location: MAKATI CITY, Dela Rosa
+Capacity: 2
+OccupiedSpace: 0
+CostPerMinute: 10
